@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PollService, iNomination } from './poll.service';
 
 @Component({
   selector: 'app-root',
@@ -9,34 +10,23 @@ export class AppComponent {
   title = 'bag of dicks!';
   insttxt = 'Vote for any number of places you want to go. Veto options if you would refuse to go there';
   nominations = [];
-  constructor (
-    )
+  constructor ( private pollService : PollService )
 	{
-		this.nominations = JSON.parse(localStorage.getItem('nominations'));
+		this.nominations = this.pollService.getNominations();
 	}
   sub = "";
-  public newNomination(name : string) : iNomination {
-	return {name : name, approves : 0, vetoes : 0};
-  } 
+
   public nominateClick() : void {
-	let nomination = this.newNomination(this.sub);
-	this.nominations.push(nomination);
-	this.saveNominations();
+	this.nominations = this.pollService.nominate(this.sub);
   }
   public approveClick(nomination : iNomination) : void {
-	nomination.approves++;
-	this.saveNominations();
+	this.nominations = this.pollService.approve(nomination);
   }
   public vetoClick(nomination : iNomination) : void {
-	nomination.vetoes++;
-	this.saveNominations();
+	this.nominations = this.pollService.veto(nomination);
   }
   
-  private saveNominations(){
-	localStorage.setItem('nominations', JSON.stringify(this.nominations));
-  }
+  
 }
 
-interface iNomination{
-  name : string, approves : number, vetoes : number
-}
+
