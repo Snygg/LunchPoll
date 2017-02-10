@@ -9,13 +9,13 @@ export class PollService {
 	let nomination = this.newNomination(name);
 	let noms = this.getNominations();
 	
-	if (noms.filter((current : iNomination) =>{return name === current.name}).length > 0 ){ 
+	if (noms.filter((current : iNomination) =>{return name === current.name}).length === 0 ){ 
 	  noms.push(nomination);
 	  this.saveNominations(noms);
-	  return noms;
 	} else {
 	  console.log('duplicate: give user feedback in next version');
 	}
+	return noms;
   }
   public newNomination(name : string) : iNomination {
 	return {name : name, approves : 0, vetoes : 0};
