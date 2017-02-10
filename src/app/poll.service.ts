@@ -24,7 +24,7 @@ export class PollService {
 	localStorage.setItem('nominations', JSON.stringify(nominations));
   }
   public getNominations () : iNomination[] {
-	return JSON.parse(localStorage.getItem('nominations'));
+	return JSON.parse(localStorage.getItem('nominations')) || [] ;
   }
   public approve (nom : iNomination) : iNomination[]{
 	let noms = this.getNominations();
