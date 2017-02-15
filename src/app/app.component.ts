@@ -25,7 +25,9 @@ export class AppComponent {
   public vetoClick(nomination : iNomination) : void {
 	this.nominations = this.pollService.veto(nomination);
   }
-  
+  public clearClick() : void {
+	this.nominations = this.pollService.clear();
+  }
   
 }
 

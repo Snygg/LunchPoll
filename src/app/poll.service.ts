@@ -38,8 +38,10 @@ export class PollService {
 	this.saveNominations(noms);
 	return noms;
   }
-  public clearOptions () {
-  
+  public clear () : iNomination[] {
+	let noms = new Array <iNomination>();
+	this.saveNominations(noms);
+	return noms;
   }
 }
 export interface iNomination{
