@@ -8,10 +8,6 @@ export class PollService {
 
     constructor(private http: Http) { }
 
-    public test() {
-        this.http.get('api').subscribe((response) => { console.log(response) });
-    }
-
     public nominate(name: string): Observable<iNomination> {
         console.log(name);
         let nomination = this.newNomination(name);
