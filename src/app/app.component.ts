@@ -14,7 +14,6 @@ export class AppComponent {
         this.pollService.getNominations().subscribe((nominations) => {
             this.nominations = nominations
         });
-        this.pollService.test();
     }
     sub = "";
 
